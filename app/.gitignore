@@ -1,1 +1,6 @@
-.json
+# Gemini chats log file
+chat_history.json
+
+# Project spesific stuff
+whisper.cpp/
+coqui_utils/
