@@ -1,24 +1,21 @@
-import os
-import uuid
-import tempfile
-import subprocess
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# path ke folder utilitas TTS
-COQUI_DIR = os.path.join(BASE_DIR, "coqui_utils")
-
-# TODO: Lengkapi jalur path ke file model TTS
-# File model (misalnya checkpoint_1260000-inference.pth) harus berada di dalam folder coqui_utils/
-COQUI_MODEL_PATH = ...
-
-# TODO: Lengkapi jalur path ke file konfigurasi
-# File config.json harus berada di dalam folder coqui_utils/
-COQUI_CONFIG_PATH = ...
-
-# TODO: Tentukan nama speaker yang digunakan
-# Pilih nama speaker yang sesuai dengan isi file speakers.pth (misalnya: "wibowo")
-COQUI_SPEAKER = ...
+import os 
+import uuid 
+import tempfile 
+import subprocess 
+ 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) 
+ 
+# path ke folder utilitas TTS 
+COQUI_DIR = os.path.join(BASE_DIR, "coqui_utils") 
+ 
+# File model paths for Coqui TTS
+COQUI_MODEL_PATH = os.path.join(COQUI_DIR, "checkpoint_1260000-inference.pth")
+ 
+# Config path for Coqui TTS
+COQUI_CONFIG_PATH = os.path.join(COQUI_DIR, "config.json")
+ 
+# Speaker name from speakers.pth
+COQUI_SPEAKER = "wibowo"
 
 def transcribe_text_to_speech(text: str) -> str:
     """

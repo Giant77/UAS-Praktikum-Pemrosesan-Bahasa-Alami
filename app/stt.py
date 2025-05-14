@@ -1,20 +1,18 @@
-import os
-import uuid
-import tempfile
-import subprocess
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# path ke folder utilitas STT
-WHISPER_DIR = os.path.join(BASE_DIR, "whisper.cpp")
-
-# TODO: Lengkapi path ke binary whisper-cli
-# Gunakan os.path.join() untuk menggabungkan WHISPER_DIR, "build", "bin", dan "whisper-cli"
-WHISPER_BINARY = ...
-
-# TODO: Lengkapi path ke file model Whisper (contoh: ggml-large-v3-turbo.bin)
-# Gunakan os.path.join() untuk mengarah ke file model di dalam folder "models"
-WHISPER_MODEL_PATH = ...
+import os 
+import uuid 
+import tempfile 
+import subprocess 
+ 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) 
+ 
+# path ke folder utilitas STT 
+WHISPER_DIR = os.path.join(BASE_DIR, "whisper.cpp") 
+ 
+# Path to whisper binary executable
+WHISPER_BINARY = os.path.join(WHISPER_DIR, "build", "bin", "Release", "whisper-cli")
+ 
+# Path to whisper model file
+WHISPER_MODEL_PATH = os.path.join(WHISPER_DIR, "models", "ggml-large-v3-turbo.bin")
 
 def transcribe_speech_to_text(file_bytes: bytes, file_ext: str = ".wav") -> str:
     """
@@ -47,9 +45,15 @@ def transcribe_speech_to_text(file_bytes: bytes, file_ext: str = ".wav") -> str:
         except subprocess.CalledProcessError as e:
             return f"[ERROR] Whisper failed: {e}"
         
-        # baca hasil transkripsi
+        # baca hasil transkripsi TODO: fix dynamic tempfiles pathing
         try:
-            with open(result_path, "r", encoding="utf-8") as result_file:
+            # with open(result_path, "r", encoding="utf-8") as result_file:
+            #     return result_file.read()
+            with open("C:/Users/y/AppData/Local/Temp/transcription.txt", "r", encoding="utf-8") as result_file:
                 return result_file.read()
         except FileNotFoundError:
-            return "[ERROR] Transcription file not found"
+            return "[ERROR] Transcription file not found", result_path
+
+# with open("C:/Users/y/AppData/Local/Temp/gradio/2aa076ba766748630f52b55dc7591889780457116bddd7696f7e570e00162998/audio.wav", "rb") as f:
+#     audio_bin = f.read()
+# transcribe_speech_to_text(audio_bin)
