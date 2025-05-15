@@ -3,6 +3,7 @@ import uuid
 import tempfile 
 import subprocess 
  
+#  Define Variables
 BASE_DIR = os.path.dirname(os.path.abspath(__file__)) 
  
 # path ke folder utilitas TTS 
@@ -14,7 +15,7 @@ COQUI_MODEL_PATH = os.path.join(COQUI_DIR, "checkpoint_1260000-inference.pth")
 # Config path for Coqui TTS
 COQUI_CONFIG_PATH = os.path.join(COQUI_DIR, "config.json")
  
-# Speaker name from speakers.pth
+# Speaker name for Coqui TTS
 COQUI_SPEAKER = "wibowo"
 
 def transcribe_text_to_speech(text: str) -> str:
@@ -44,9 +45,14 @@ def _tts_with_coqui(text: str) -> str:
     ]
     
     try:
+        # Run the subprocess
         subprocess.run(cmd, check=True)
+
     except subprocess.CalledProcessError as e:
         print(f"[ERROR] TTS subprocess failed: {e}")
         return "[ERROR] Failed to synthesize speech"
 
     return output_path
+
+# # Test the function
+# transcribe_text_to_speech("Halo, apa kabar? Ini adalah contoh teks yang diubah menjadi suara menggunakan Coqui TTS.")

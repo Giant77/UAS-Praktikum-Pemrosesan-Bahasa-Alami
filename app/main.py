@@ -2,11 +2,13 @@ import os
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import FileResponse
 import uvicorn
+from g2p_id import G2P
 
 from stt import transcribe_speech_to_text
 from llm import generate_response
 from tts import transcribe_text_to_speech
 
+g2p = G2P()
 app = FastAPI(title="Voice AI Assistant API")
 
 @app.get("/")
@@ -30,8 +32,6 @@ async def voice_chat(file: UploadFile = File(...)):
     
     # 2. Speech to text
     transcript = transcribe_speech_to_text(contents, file_ext=os.path.splitext(file.filename)[1])
-    # if transcript.startswith("[ERROR]"):
-    #     return {"error": transcript}
     
     print(f"[INFO] Transcribed: {transcript}")
     
@@ -43,7 +43,8 @@ async def voice_chat(file: UploadFile = File(...)):
     print(f"[INFO] LLM Response: {response_text}")
     
     # 4. Text to speech
-    audio_path = transcribe_text_to_speech(response_text)
+    # send g2p results for 'phonetized' text
+    audio_path = transcribe_text_to_speech(g2p(response_text))
     if not audio_path or audio_path.startswith("[ERROR]"):
         return {"error": f"Failed to generate speech: {audio_path}"}
     
@@ -53,8 +54,6 @@ async def voice_chat(file: UploadFile = File(...)):
     media_type="audio/wav",
     filename="response.wav"
 )
-
-
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

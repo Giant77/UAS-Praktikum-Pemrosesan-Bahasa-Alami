@@ -108,7 +108,7 @@ berada pada direktori models, sesuai struktur proyek yang dicantumkan.
 
 ```bash
 cd whisper.cpp
-./models/download-ggml-model.sh large-v3-turbo
+bash ./models/download-ggml-model.sh large-v3-turbo
 ```
 
 Build project agar dapat dijalankan, silahkan merujuk repository whisper.cpp
@@ -133,8 +133,8 @@ release(disarankan versi 1.2 atau lebih baru) untuk download 3 file yang diperlu
 -   config.json – file konfigurasi model yang menyimpan parameter dan pengaturan pelatihan.
 -   speakers.pth – file daftar speaker yang tersedia untuk digunakan dalam sintesis suara.
 
-Kemudian cari, dan gantikan baris dengan key "speakers_file", dan ubah seperti referensi berikut,
-ataupun menyesuaikan dengan direktori yang dibuat.
+Kemudian pada file confiq.json cari, dan gantikan baris dengan key "speakers_file",
+dan ubah seperti referensi berikut, ataupun menyesuaikan dengan direktori yang dibuat.
 
 ```
     "speakers_file": "./coqui_utils/speakers.pth",
@@ -143,7 +143,8 @@ ataupun menyesuaikan dengan direktori yang dibuat.
 ### 4. Jalankan Backend (FastAPI)
 
 -   Jalankan server
-    note: pastikan anda telah berada di folder app (backend) project
+
+**note:** pastikan anda telah berada di folder app (backend) project
 
 Untuk debugging dan pengembangan lebih lanjut, jalankan command berikut
 
@@ -157,14 +158,14 @@ Jika hanya ingin menjalankan project tanpa auto-reload server, cukup jalankan
 python main.py
 ```
 
-### 4. Setup dan jalankan Frontend (Streamlit)
-
--   Buka terminal baru:
-    note: Pastikan sudah berada di direktori gradio_app (frontend) project
+### 5. Setup dan jalankan Frontend (Gradio)
 
 ```bash
 cd gradio_app
 ```
+
+-   Buka terminal baru:
+    note: Pastikan sudah berada di direktori gradio_app (frontend) project
 
 Untuk menjalankan frontend, cukup jalankan
 
