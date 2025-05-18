@@ -144,7 +144,7 @@ dan ubah seperti referensi berikut, ataupun menyesuaikan dengan direktori yang d
 
 -   Jalankan server
 
-**note:** pastikan anda telah berada di folder app (backend) project
+**Note:** pastikan anda telah berada di folder app (backend) project
 
 Untuk debugging dan pengembangan lebih lanjut, jalankan command berikut
 
