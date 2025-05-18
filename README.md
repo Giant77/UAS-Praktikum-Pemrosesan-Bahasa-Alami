@@ -198,5 +198,5 @@ Proyek UAS mata kuliah _Pemrosesan Bahasa Alami_ — Semester Genap 2024/2025.
 
 ## Demo video
 
-TODO:
-[To Be Updated](https://www.youtube.com/@giant3585)
+Link: [Youtube](https://youtu.be/H_ODTop6cpI)  
+Etc.: [Linkedln](https://www.linkedin.com/feed/?shareActive=true&view=management)
